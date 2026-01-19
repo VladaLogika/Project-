@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Nav</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+/* ====== BASE ====== */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: #f4f6f9;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ====== NAV ====== */
+.nav-tabs {
+  background: #ffffff;
+  padding: 12px 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  border-bottom: none;
+}
+
+.nav-link {
+  font-size: 17px;
+  color: #555;
+}
+
+.nav-link.active {
+  color: #0d6efd;
+  font-weight: 600;
+}
+
+/* ====== BANNER ====== */
+.banner-small {
+  height: 120px;
+  background: linear-gradient(135deg, #273b55, #1b2a40);
+  color: #ffffff;
+  margin-bottom: 40px;
+}
+
+/* ====== CONTENT ====== */
+.main-content {
+  flex: 1;
+}
+
+.posts-wrapper {
+  max-width: 850px;
+  margin: 0 auto 60px;
+  padding: 0 15px;
+}
+
+.posts-wrapper h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: 600;
+  color: #1b2a40;
+}
+
+/* ====== POST CARD ====== */
+article {
+  background: #ffffff;
+  padding: 25px 30px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+article:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.1);
+}
+
+article h2 {
+  margin-top: 0;
+  color: #273b55;
+}
+
+article p {
+  color: #555;
+  line-height: 1.6;
+}
+
+article small {
+  color: #888;
+}
+
+/* ====== FOOTER ====== */
+.site-footer {
+  background-color:  #1b2a40;
+  color: #ffffff;
+  padding: 35px 20px 15px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.footer-item {
+  margin: 10px 0;
+  min-width: 200px;
+}
+
+.footer-item label {
+  font-size: 13px;
+  color: #cccccc;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.2);
+  margin-top: 20px;
+  padding-top: 10px;
+  text-align: center;
+  font-size: 13px;
+  color: #cccccc;
+}
+
+/* ====== MOBILE ====== */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+
+    </style>
+  </head>
+
+  <body>
+
+    <!-- Навігація -->
+    <ul class="nav nav-tabs justify-content-center">
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'reviews' %}">Reviews about the site</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'about' %}">More about us</a>
+      </li>
+    </ul>
+
+<!-- Маленький широкий банер -->
+<div class="banner-small d-flex justify-content-center align-items-center text-white text-center">
+    <h2 class="fw-bold">Welcome to Seraphic</h2>
+</div>
+
+<div class="main-content">
+  <div class="posts-wrapper">
+    <h1>Останні статті</h1>
+
+    {% for post in posts %}
+      <article>
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.content }}</p>
+        <small>
+          Автор: {{ post.author.username }} |
+          Дата: {{ post.date_posted|date:"F d, Y" }}
+        </small>
+      </article>
+    {% empty %}
+      <p style="text-align:center;">Наразі статтей немає.</p>
+    {% endfor %}
+  </div>
+</div>
+
+
+  </body>
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-item">
+      <label>Email</label>
+      <p>vladislavatkacuk6@email.com</p>
+    </div>
+
+    <div class="footer-item">
+      <label>Телефон</label>
+      <p>+380 99 677 72 05</p>
+    </div>
+
+    <div class="footer-item">
+      <label>Засновник</label>
+      <p>Ткачук Владислава</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Всі права захищені
+  </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
+
+
+
+
+
+
